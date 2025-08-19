@@ -107,15 +107,14 @@ if (arg == "-D" || arg == "--download") {
       spinner.text = `Downloading to ${dir}`;
       logUpdate();
       URLArr = URLArr.filter(e => e.length > 45);
-      let flag = false;
+      
       for (let i = 0; i < URLArr.length; i++) {
         let link = URLArr[i];
         await download.image({
           url: link,
           dest: `${dir}/`
         });
-        if (i == URLArr.length - 2) flag = true;
-        if (flag) {
+        if (i === URLArr.length - 1) { // Fixed line
           spinner.text = "Downloaded";
           logUpdate();
           console.log("Downloading complete");
